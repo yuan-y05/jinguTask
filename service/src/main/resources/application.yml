@@ -1,0 +1,10 @@
+server:
+  port: 8081
+ttm:
+  zkHost: 120.26.67.194
+  zkPort: 2181
+  zkSessionTimeout: 60000
+  rootPath: /ttm
+  userName: admin
+  password: admin
+  serverCode: 0000000001
