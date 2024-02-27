@@ -1,5 +1,10 @@
+spring:
+  application:
+    name: jinguTask
 server:
   port: 8081
+logging:
+  config: classpath:log4j2.yml
 ttm:
   zkHost: 120.26.67.194
   zkPort: 2181
