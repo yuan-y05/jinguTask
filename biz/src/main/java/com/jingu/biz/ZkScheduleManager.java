@@ -7,7 +7,6 @@ import com.jingu.biz.zk.ZKManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -19,6 +18,11 @@ import javax.annotation.Resource;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 1、将zookeeper 放入 applicationContext
+ * 2、初始化配置（zookeeper 连接）
+ * 3、服务器 基本配置信息（ip、time、心跳）
+ */
 @Configuration
 @EnableConfigurationProperties(TtmConfig.class)
 public class ZkScheduleManager extends ThreadPoolTaskScheduler implements ApplicationContextAware {
@@ -116,4 +120,20 @@ public class ZkScheduleManager extends ThreadPoolTaskScheduler implements Applic
             }
         }
     }
+
+    /**
+     * 获取应用上下文
+     */
+    public static ApplicationContext getApplicationContext(){
+        return applicationContext;
+    }
+
+    /**
+     * 获取zookeeper  上下文
+     */
+    public IScheduleDataManager getScheduleDataManager(){
+        return scheduleDataManager;
+    }
+
+
 }

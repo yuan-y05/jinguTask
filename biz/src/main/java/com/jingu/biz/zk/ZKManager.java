@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * 1、zk 连接管理
+ * 2、zk 状态管理
+ */
 public class ZKManager {
     private static final transient Logger log = LoggerFactory.getLogger(ZKManager.class);
 
@@ -79,11 +83,34 @@ public class ZKManager {
         // Disconnected：Zookeeper会自动处理Disconnected状态重连
     }
 
+
+
+    /**
+     * check zookeeper status
+     */
     public boolean checkZookeeperStatus(){
         return zk!=null && zk.getState() == ZooKeeper.States.CONNECTED;
     }
 
     public String getConnectStr(){
         return this.ttmConfig.getZkConnectionString();
+    }
+
+    String getServerCode(){
+        return ttmConfig.getServerCode();
+    }
+    String getRootPath(){
+        return ttmConfig.getRootPath();
+    }
+
+    public List<ACL> getAcl() {
+        return acl;
+    }
+
+    ZooKeeper getZooKeeper() throws Exception {
+        if(!this.checkZookeeperStatus()){
+            reconnect();
+        }
+        return this.zk;
     }
 }

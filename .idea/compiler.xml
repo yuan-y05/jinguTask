@@ -14,13 +14,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="biz" target="8" />
-      <module name="client" target="1.8" />
       <module name="common" target="8" />
-      <module name="dao" target="8" />
       <module name="jinguTask" target="1.5" />
-      <module name="service" target="1.8" />
-      <module name="task" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
